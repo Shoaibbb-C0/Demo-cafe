@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<!-- 
+  DOCTYPE tells the browser: "This is an HTML5 document."
+  Always put this at the very top — it prevents the browser from 
+  going into "quirks mode" (old rendering behavior).
+-->
+
+<html lang="en">
+<!-- 
+  <html> is the root element — every HTML page starts and ends with it.
+  lang="en" tells screen readers and search engines the language is English.
+-->
+
+<head>
+  <!-- 
+    <head> contains information ABOUT the page (not visible content).
+    Think of it as the page's settings panel.
+  -->
+
+  <meta charset="UTF-8">
+  <!-- 
+    charset="UTF-8" tells the browser to support all characters —
+    including Turkish letters like ş, ğ, ç, ö, ü, ı.
+    Always include this.
+  -->
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- 
+    This makes the website RESPONSIVE (looks good on phones too).
+    width=device-width → use the device's actual screen width.
+    initial-scale=1.0 → don't zoom in or out on load.
+  -->
+
+  <title>Shoaibbb's Café — Modern Turkish Elegance</title>
+  <!-- 
+    <title> sets the text shown in the browser tab and search results.
+    Keep it descriptive and unique.
+  -->
+
+  <!-- ====== GOOGLE FONTS ====== -->
+  <!-- 
+    We're importing two fonts from Google Fonts (free):
+    - "Cormorant Garamond" → elegant serif for headings (Turkish feeling)
+    - "Jost" → clean, modern sans-serif for body text
+    These are linked here so the browser downloads them.
+  -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- ====== LINK TO OUR CSS FILE ====== -->
+  <!-- 
+    <link> connects this HTML file to our external CSS file.
+    rel="stylesheet" → tells the browser this is a CSS file.
+    href="style.css" → the path to the CSS file (same folder = just the filename).
+    This is how you connect HTML and CSS — every page needs this!
+  -->
+  <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+  <!-- 
+    <body> contains everything VISIBLE on the page.
+    All sections, text, images, forms go here.
+  -->
+
+  <!-- ============================================================
+       SECTION 1: NAVBAR (Navigation Bar)
+       ============================================================ -->
+  <!-- 
+    <nav> is a semantic HTML tag — it tells the browser 
+    "this is a navigation menu." Use it instead of a plain <div>
+    when the content is a set of links. Good for accessibility.
+  -->
+  <nav class="navbar" id="navbar">
+    <!-- 
+      class="navbar" → we can target this in CSS with .navbar
+      id="navbar" → used for smooth-scroll behavior in CSS
+    -->
+
+    <!-- The logo/brand name on the left side of the navbar -->
+    <div class="navbar__logo">
+      <!-- 
+        <div> is a generic container. Here it holds our logo.
+        navbar__logo → BEM naming: "navbar" block, "logo" element.
+        BEM makes class names self-documenting.
+      -->
+      <span class="logo__symbol">☽</span>
+      <!-- 
+        <span> is an inline container (doesn't break to new line).
+        We use a crescent moon ☽ as a subtle Turkish/Ottoman symbol.
+      -->
+      <span class="logo__text">Shoaibbb's Café</span>
+    </div>
+
+    <!-- Navigation links on the right side -->
+    <ul class="navbar__links">
+      <!-- 
+        <ul> = unordered list (bullet points, but we'll hide bullets with CSS).
+        Navbars are semantically a list of links — this is the correct HTML structure.
+      -->
+      <li><a href="#about">About</a></li>
+      <!-- 
+        <li> = list item.
+        <a href="#about"> → anchor link. The # means "scroll to element with id='about'".
+        This creates smooth in-page navigation.
+      -->
+      <li><a href="#menu">Menu</a></li>
+      <li><a href="#gallery">Gallery</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a href="#contact" class="btn btn--nav">Reserve a Table</a></li>
+      <!-- 
+        This last link uses extra classes to style it as a button.
+        btn → base button styles
+        btn--nav → modifier for the navbar-specific version
+      -->
+    </ul>
+
+    <!-- Hamburger icon for mobile (3 lines) -->
+    <div class="navbar__hamburger" id="hamburger" onclick="toggleMenu()">
+      <!-- 
+        This shows on small screens as a ☰ menu icon.
+        onclick="toggleMenu()" → calls a JavaScript function at the bottom of the file.
+      -->
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
+  </nav>
+  <!-- End of navbar -->
+
+
+  <!-- ============================================================
+       SECTION 2: HERO SECTION
+       The big, eye-catching welcome banner at the top of the page.
+       ============================================================ -->
+  <section class="hero" id="home">
+    <!-- 
+      <section> is a semantic tag meaning "a standalone section of content."
+      Use it for major page sections (hero, about, menu, etc.)
+      id="home" → lets navbar links target this section.
+    -->
+
+    <!-- Decorative geometric overlay pattern (done in CSS) -->
+    <div class="hero__overlay"></div>
+    <!-- 
+      This <div> has no content — it's purely visual.
+      We'll use CSS to draw an ornamental pattern on top of the hero.
+    -->
+
+    <!-- The actual text content of the hero -->
+    <div class="hero__content">
+      <p class="hero__eyebrow">Est. 2024 · Istanbul Inspired</p>
+      <!-- 
+        "Eyebrow text" = small text above the main heading.
+        It adds context without competing with the headline.
+      -->
+
+      <h1 class="hero__title">
+        Where Every Sip<br>
+        Tells a Story
+        <!-- 
+          <h1> is the most important heading on the page.
+          There should be only ONE <h1> per page.
+          <br> forces a line break inside the heading.
+        -->
+      </h1>
+
+      <p class="hero__subtitle">
+        Authentic Turkish flavors, crafted with love and tradition.<br>
+        A taste of the Bosphorus, right here in your city.
+      </p>
+
+      <!-- Call-to-action buttons -->
+      <div class="hero__actions">
+        <a href="#menu" class="btn btn--primary">Explore Our Menu</a>
+        <!-- 
+          <a> styled as a button (not a real <button> tag).
+          Using <a> here is better because it navigates to a section.
+          btn--primary → the solid, filled button style.
+        -->
+        <a href="#about" class="btn btn--ghost">Our Story</a>
+        <!-- btn--ghost → an outlined/transparent button style -->
+      </div>
+    </div>
+
+    <!-- Decorative Turkish pattern on the side -->
+    <div class="hero__ornament">
+      <div class="ornament__circle"></div>
+      <div class="ornament__ring"></div>
+    </div>
+
+  </section>
+  <!-- End of hero -->
+
+
+  <!-- ============================================================
+       SECTION 3: ABOUT SECTION
+       ============================================================ -->
+  <section class="about section" id="about">
+    <!-- 
+      class="about section" → has TWO classes.
+      "section" is a shared utility class for padding/spacing,
+      "about" is specific to this section's styling.
+    -->
+
+    <div class="container">
+      <!-- 
+        class="container" → a centered wrapper with max-width.
+        We reuse this on every section to keep content from stretching
+        too wide on large screens.
+      -->
+
+      <div class="about__grid">
+        <!-- CSS Grid layout: image on one side, text on the other -->
+
+        <!-- Left side: decorative visual element -->
+        <div class="about__visual">
+          <div class="about__img-frame">
+            <!-- 
+              We use a CSS-drawn frame instead of a real image here
+              so the project works without any actual photo files.
+              Replace this with an <img> tag when you have photos.
+            -->
+            <div class="about__img-placeholder">
+              <span class="placeholder__icon">☕</span>
+              <p class="placeholder__text">Your café photo here</p>
+              <!-- 
+                To add a real image, replace this entire div with:
+                <img src="images/about-cafe.jpg" alt="Inside Shoaibbb's Café">
+              -->
+            </div>
+          </div>
+          <!-- Floating decorative badge -->
+          <div class="about__badge">
+            <span class="badge__number">100%</span>
+            <span class="badge__label">Authentic<br>Turkish</span>
+          </div>
+        </div>
+
+        <!-- Right side: text content -->
+        <div class="about__text">
+          <p class="section__eyebrow">Our Story</p>
+          <!-- 
+            section__eyebrow → small decorative label above section titles.
+            Using the same class across sections keeps styling consistent.
+          -->
+
+          <h2 class="section__title">A Journey Through<br>Turkish Cuisine</h2>
+          <!-- 
+            <h2> → second-level heading. Used for section titles
+            (after the <h1> in the hero). Maintains document hierarchy.
+          -->
+
+          <p class="about__description">
+            Shoaibbb's Café was born from a simple dream — to bring the 
+            warmth of a Turkish kitchen to every guest who walks through our doors. 
+            From the smoky aroma of freshly grilled kebabs to the delicate 
+            sweetness of baklava, every dish is a love letter to Istanbul.
+          </p>
+
+          <p class="about__description">
+            Our recipes have been passed down through generations. We use 
+            only the finest spices, hand-selected ingredients, and time-honored 
+            techniques to deliver an experience that's both authentic and unforgettable.
+          </p>
+
+          <!-- Small feature stats -->
+          <div class="about__stats">
+            <div class="stat">
+              <span class="stat__number">15+</span>
+              <span class="stat__label">Years of Tradition</span>
+            </div>
+            <div class="stat">
+              <span class="stat__number">50+</span>
+              <span class="stat__label">Menu Items</span>
+            </div>
+            <div class="stat">
+              <span class="stat__number">10K+</span>
+              <span class="stat__label">Happy Guests</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- End of about -->
+
+
+  <!-- ============================================================
+       SECTION 4: MENU SECTION
+       ============================================================ -->
+  <section class="menu section" id="menu">
+
+    <div class="container">
+
+      <!-- Section Header -->
+      <div class="section__header">
+        <p class="section__eyebrow">Taste of Turkey</p>
+        <h2 class="section__title">Our Signature Menu</h2>
+        <p class="section__subtitle">Each dish is prepared fresh daily, using authentic recipes and the finest Turkish ingredients.</p>
+      </div>
+
+      <!-- Menu Grid: 10 dishes in a responsive grid layout -->
+      <div class="menu__grid">
+        <!-- 
+          Each .menu__card represents one dish.
+          We repeat the same card structure 10 times (one per dish).
+        -->
+
+        <!-- DISH 1: Kebabs -->
+        <div class="menu__card">
+          <div class="card__emoji">🥙</div>
+          <!-- Using emoji as simple food icons — replace with images if desired -->
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">Adana Kebab</h3>
+              <span class="card__price">₺120</span>
+              <!-- 
+                <h3> → third-level heading. Used for card/item titles.
+                Correct hierarchy: h1 (page) → h2 (section) → h3 (card).
+                ₺ is the Turkish Lira symbol.
+              -->
+            </div>
+            <p class="card__desc">Hand-minced spiced lamb grilled on charcoal, served with flatbread, grilled tomatoes & peppers.</p>
+            <span class="card__tag">Grill</span>
+            <!-- .card__tag → a small category label/badge -->
+          </div>
+        </div>
+
+        <!-- DISH 2: Lahmacun -->
+        <div class="menu__card">
+          <div class="card__emoji">🫓</div>
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">Lahmacun</h3>
+              <span class="card__price">₺65</span>
+            </div>
+            <p class="card__desc">Thin crispy flatbread topped with spiced minced meat, fresh parsley, onion & a squeeze of lemon.</p>
+            <span class="card__tag">Street Food</span>
+          </div>
+        </div>
+
+        <!-- DISH 3: Baklava -->
+        <div class="menu__card menu__card--featured">
+          <!-- 
+            menu__card--featured → BEM modifier class.
+            This card gets a special highlight style (gold border, etc.)
+            to make it stand out as a "chef's pick" or popular item.
+          -->
+          <div class="card__emoji">🍯</div>
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">Pistachio Baklava</h3>
+              <span class="card__price">₺85</span>
+            </div>
+            <p class="card__desc">Layers of paper-thin phyllo pastry, crushed pistachios & rose-water syrup. A legendary Ottoman dessert.</p>
+            <span class="card__tag card__tag--featured">Chef's Pick ★</span>
+          </div>
+        </div>
+
+        <!-- DISH 4: Turkish Delight -->
+        <div class="menu__card">
+          <div class="card__emoji">🍬</div>
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">Turkish Delight</h3>
+              <span class="card__price">₺45</span>
+            </div>
+            <p class="card__desc">Classic lokum in rose, pomegranate & pistachio flavors, dusted with fine powdered sugar.</p>
+            <span class="card__tag">Dessert</span>
+          </div>
+        </div>
+
+        <!-- DISH 5: Pide -->
+        <div class="menu__card">
+          <div class="card__emoji">🥖</div>
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">Kuşbaşılı Pide</h3>
+              <span class="card__price">₺110</span>
+            </div>
+            <p class="card__desc">Boat-shaped Turkish flatbread filled with cubed lamb, peppers, tomatoes & melted kaşar cheese.</p>
+            <span class="card__tag">Baked</span>
+          </div>
+        </div>
+
+        <!-- DISH 6: Menemen -->
+        <div class="menu__card">
+          <div class="card__emoji">🍳</div>
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">Menemen</h3>
+              <span class="card__price">₺55</span>
+            </div>
+            <p class="card__desc">A Turkish brunch classic — scrambled eggs with tomatoes, green peppers & white cheese in a copper pan.</p>
+            <span class="card__tag">Breakfast</span>
+          </div>
+        </div>
+
+        <!-- DISH 7: Doner -->
+        <div class="menu__card">
+          <div class="card__emoji">🌯</div>
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">Döner Wrap</h3>
+              <span class="card__price">₺75</span>
+            </div>
+            <p class="card__desc">Slow-roasted seasoned beef shaved thin, wrapped in warm lavash with yogurt, tomatoes & herbs.</p>
+            <span class="card__tag">Street Food</span>
+          </div>
+        </div>
+
+        <!-- DISH 8: Borek -->
+        <div class="menu__card">
+          <div class="card__emoji">🥐</div>
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">Sigara Böreği</h3>
+              <span class="card__price">₺50</span>
+            </div>
+            <p class="card__desc">Crispy rolled phyllo pastry filled with white cheese & fresh herbs. Fried golden to perfection.</p>
+            <span class="card__tag">Starter</span>
+          </div>
+        </div>
+
+        <!-- DISH 9: Kofte -->
+        <div class="menu__card">
+          <div class="card__emoji">🍢</div>
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">İzmir Köfte</h3>
+              <span class="card__price">₺95</span>
+            </div>
+            <p class="card__desc">Spiced lamb meatballs baked with potato slices, tomatoes & peppers in rich tomato sauce.</p>
+            <span class="card__tag">Grill</span>
+          </div>
+        </div>
+
+        <!-- DISH 10: Ayran -->
+        <div class="menu__card">
+          <div class="card__emoji">🥛</div>
+          <div class="card__content">
+            <div class="card__header">
+              <h3 class="card__name">Ayran</h3>
+              <span class="card__price">₺25</span>
+            </div>
+            <p class="card__desc">Chilled traditional yogurt drink, lightly salted. The perfect companion to any Turkish meal.</p>
+            <span class="card__tag">Drink</span>
+          </div>
+        </div>
+
+      </div>
+      <!-- End of menu grid -->
+
+    </div>
+  </section>
+  <!-- End of menu -->
+
+
+  <!-- ============================================================
+       SECTION 5: GALLERY SECTION
+       ============================================================ -->
+  <section class="gallery section" id="gallery">
+
+    <div class="container">
+
+      <div class="section__header">
+        <p class="section__eyebrow">Visual Journey</p>
+        <h2 class="section__title">Gallery</h2>
+        <p class="section__subtitle">A glimpse into the world of Shoaibbb's Café.</p>
+      </div>
+
+      <!-- Masonry-inspired gallery grid -->
+      <div class="gallery__grid">
+        <!-- 
+          Each gallery item is a placeholder box.
+          In a real project, replace the inner content with:
+          <img src="images/gallery-1.jpg" alt="Turkish kebab on plate">
+          
+          The different heights create a masonry-like effect using CSS Grid.
+        -->
+        <div class="gallery__item gallery__item--tall">
+          <div class="gallery__placeholder">
+            <span>🥙</span>
+            <p>Kebab Platter</p>
+          </div>
+          <div class="gallery__overlay">
+            <p>Adana Kebab</p>
+          </div>
+        </div>
+
+        <div class="gallery__item">
+          <div class="gallery__placeholder">
+            <span>🍯</span>
+            <p>Baklava</p>
+          </div>
+          <div class="gallery__overlay">
+            <p>Fresh Baklava</p>
+          </div>
+        </div>
+
+        <div class="gallery__item">
+          <div class="gallery__placeholder">
+            <span>☕</span>
+            <p>Turkish Coffee</p>
+          </div>
+          <div class="gallery__overlay">
+            <p>Turkish Coffee</p>
+          </div>
+        </div>
+
+        <div class="gallery__item gallery__item--wide">
+          <div class="gallery__placeholder">
+            <span>🏮</span>
+            <p>Café Interior</p>
+          </div>
+          <div class="gallery__overlay">
+            <p>Our Ambiance</p>
+          </div>
+        </div>
+
+        <div class="gallery__item gallery__item--tall">
+          <div class="gallery__placeholder">
+            <span>🥖</span>
+            <p>Fresh Pide</p>
+          </div>
+          <div class="gallery__overlay">
+            <p>Pide from the Oven</p>
+          </div>
+        </div>
+
+        <div class="gallery__item">
+          <div class="gallery__placeholder">
+            <span>🌯</span>
+            <p>Döner</p>
+          </div>
+          <div class="gallery__overlay">
+            <p>Slow-Roasted Döner</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- End of gallery -->
+
+
+  <!-- ============================================================
+       SECTION 6: CONTACT / RESERVATION FORM
+       ============================================================ -->
+  <section class="contact section" id="contact">
+
+    <div class="container">
+
+      <div class="contact__grid">
+
+        <!-- Left: Info column -->
+        <div class="contact__info">
+          <p class="section__eyebrow">Find Us</p>
+          <h2 class="section__title">Visit or<br>Reserve a Table</h2>
+
+          <!-- Info cards with icons -->
+          <div class="info__items">
+
+            <div class="info__item">
+              <span class="info__icon">📍</span>
+              <div>
+                <strong>Address</strong>
+                <p>42 Bosphorus Lane, Beşiktaş<br>Istanbul, Turkey</p>
+              </div>
+            </div>
+
+            <div class="info__item">
+              <span class="info__icon">🕐</span>
+              <div>
+                <strong>Hours</strong>
+                <p>Mon–Sat: 8:00 AM – 11:00 PM<br>Sunday: 9:00 AM – 10:00 PM</p>
+              </div>
+            </div>
+
+            <div class="info__item">
+              <span class="info__icon">📞</span>
+              <div>
+                <strong>Phone</strong>
+                <p>+90 212 123 4567</p>
+              </div>
+            </div>
+
+            <div class="info__item">
+              <span class="info__icon">✉️</span>
+              <div>
+                <strong>Email</strong>
+                <p>hello@shoaibbbscafe.com</p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Right: Reservation form -->
+        <div class="contact__form-wrap">
+          <form class="contact__form" onsubmit="handleSubmit(event)">
+            <!-- 
+              <form> → creates an HTML form for user input.
+              onsubmit="handleSubmit(event)" → runs our JS function when form is submitted.
+              In a real project, you'd send this data to a server.
+            -->
+
+            <h3 class="form__title">Make a Reservation</h3>
+
+            <!-- Form row: two inputs side by side -->
+            <div class="form__row">
+              <div class="form__group">
+                <!-- 
+                  .form__group wraps a label + input pair.
+                  This keeps them visually together.
+                -->
+                <label for="fname">First Name</label>
+                <!-- 
+                  <label> describes what the input is for.
+                  for="fname" links it to the input with id="fname".
+                  Clicking the label focuses the input (great for usability).
+                -->
+                <input type="text" id="fname" name="fname" placeholder="Shoaib" required>
+                <!-- 
+                  type="text" → accepts any text.
+                  placeholder → grey hint text shown when empty.
+                  required → browser won't submit if this is empty.
+                -->
+              </div>
+              <div class="form__group">
+                <label for="lname">Last Name</label>
+                <input type="text" id="lname" name="lname" placeholder="Khan" required>
+              </div>
+            </div>
+
+            <div class="form__group">
+              <label for="email">Email Address</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" required>
+              <!-- type="email" → browser validates email format automatically -->
+            </div>
+
+            <div class="form__group">
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="+90 555 000 0000">
+              <!-- type="tel" → shows numeric keyboard on mobile -->
+            </div>
+
+            <div class="form__row">
+              <div class="form__group">
+                <label for="date">Date</label>
+                <input type="date" id="date" name="date" required>
+                <!-- type="date" → shows a date picker -->
+              </div>
+              <div class="form__group">
+                <label for="guests">Guests</label>
+                <select id="guests" name="guests">
+                  <!-- 
+                    <select> → a dropdown menu.
+                    Each <option> is one choice.
+                    value="" → what gets sent to the server.
+                  -->
+                  <option value="1">1 Person</option>
+                  <option value="2" selected>2 People</option>
+                  <!-- selected → pre-selected option -->
+                  <option value="3">3 People</option>
+                  <option value="4">4 People</option>
+                  <option value="5+">5+ People</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="form__group">
+              <label for="message">Special Requests</label>
+              <textarea id="message" name="message" placeholder="Any dietary requirements, occasion, or preferences..." rows="4"></textarea>
+              <!-- 
+                <textarea> → multi-line text input.
+                rows="4" → sets initial height to 4 lines.
+              -->
+            </div>
+
+            <button type="submit" class="btn btn--primary btn--full">
+              Confirm Reservation
+            </button>
+            <!-- 
+              type="submit" → clicking this triggers the form's onsubmit event.
+              btn--full → makes the button full width.
+            -->
+
+            <!-- Success message (hidden by default, shown by JS) -->
+            <div class="form__success" id="formSuccess">
+              ✓ Thank you! We'll confirm your reservation shortly.
+            </div>
+
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+  <!-- End of contact -->
+
+
+  <!-- ============================================================
+       SECTION 7: FOOTER
+       ============================================================ -->
+  <footer class="footer">
+    <!-- 
+      <footer> is a semantic HTML tag for the bottom section of the page.
+      Typically contains copyright, links, and social media.
+    -->
+
+    <div class="container">
+
+      <div class="footer__grid">
+
+        <!-- Column 1: Brand -->
+        <div class="footer__brand">
+          <div class="footer__logo">
+            <span class="logo__symbol">☽</span>
+            <span class="logo__text">Shoaibbb's Café</span>
+          </div>
+          <p class="footer__tagline">Authentic Turkish flavors, crafted with love and tradition since 2024.</p>
+          <!-- Social media links (text-based, replace with real URLs) -->
+          <div class="footer__social">
+            <a href="#" class="social__link">Inst</a>
+            <!-- In real project: use SVG icons or icon fonts for social logos -->
+            <a href="#" class="social__link">Fb</a>
+            <a href="#" class="social__link">Tw</a>
+          </div>
+        </div>
+
+        <!-- Column 2: Quick links -->
+        <div class="footer__col">
+          <h4 class="footer__heading">Quick Links</h4>
+          <ul class="footer__links">
+            <!-- <ul> list of footer navigation links -->
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 3: Menu highlights -->
+        <div class="footer__col">
+          <h4 class="footer__heading">Popular Dishes</h4>
+          <ul class="footer__links">
+            <li><a href="#menu">Adana Kebab</a></li>
+            <li><a href="#menu">Pistachio Baklava</a></li>
+            <li><a href="#menu">Lahmacun</a></li>
+            <li><a href="#menu">Menemen</a></li>
+            <li><a href="#menu">Döner Wrap</a></li>
+          </ul>
+        </div>
+
+        <!-- Column 4: Opening hours -->
+        <div class="footer__col">
+          <h4 class="footer__heading">Opening Hours</h4>
+          <div class="footer__hours">
+            <div class="hours__row">
+              <span>Mon – Sat</span>
+              <span>8:00 – 23:00</span>
+            </div>
+            <div class="hours__row">
+              <span>Sunday</span>
+              <span>9:00 – 22:00</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Bottom copyright bar -->
+      <div class="footer__bottom">
+        <p>© 2024 Shoaibbb's Café. All rights reserved.</p>
+        <p>Made with ❤️ for Turkish cuisine lovers.</p>
+      </div>
+
+    </div>
+  </footer>
+  <!-- End of footer -->
+
+
+  <!-- ============================================================
+       JAVASCRIPT (Minimal — only for interactivity)
+       ============================================================ -->
+  <script>
+    // JavaScript is written inside <script> tags.
+    // We put this at the BOTTOM of <body> so HTML loads first.
+
+    // ---- 1. NAVBAR: Add shadow when user scrolls down ----
+    window.addEventListener('scroll', function() {
+      // window.addEventListener → listens for an event on the whole browser window.
+      // 'scroll' → fires every time the user scrolls.
+
+      var navbar = document.getElementById('navbar');
+      // document.getElementById('navbar') → finds the element with id="navbar"
+
+      if (window.scrollY > 50) {
+        // window.scrollY → how many pixels the user has scrolled down.
+        // If scrolled more than 50px...
+        navbar.classList.add('navbar--scrolled');
+        // Add a CSS class that adds a shadow to the navbar.
+      } else {
+        navbar.classList.remove('navbar--scrolled');
+        // Remove it when back at top.
+      }
+    });
+
+    // ---- 2. MOBILE MENU: Toggle open/close ----
+    function toggleMenu() {
+      // A function we can call from HTML's onclick attribute.
+      var links = document.querySelector('.navbar__links');
+      // querySelector → finds the first element matching the CSS selector.
+      links.classList.toggle('navbar__links--open');
+      // toggle → adds the class if missing, removes it if present.
+    }
+
+    // ---- 3. FORM SUBMISSION: Show success message ----
+    function handleSubmit(event) {
+      event.preventDefault();
+      // preventDefault() → stops the form from actually submitting (which would refresh the page).
+      // In a real project, you'd send data to a server here using fetch().
+
+      var success = document.getElementById('formSuccess');
+      success.style.display = 'block';
+      // Shows the hidden success message div.
+
+      // Reset form after 3 seconds
+      setTimeout(function() {
+        event.target.reset();
+        // reset() → clears all form fields.
+        success.style.display = 'none';
+        // Hides the success message again.
+      }, 3000); // 3000 milliseconds = 3 seconds
+    }
+
+    // ---- 4. SMOOTH SCROLL: Animate scrolling to sections ----
+    document.querySelectorAll('a[href^="#"]').forEach(function(anchor) {
+      // querySelectorAll → finds ALL elements matching selector.
+      // 'a[href^="#"]' → all <a> tags whose href STARTS WITH #
+      // .forEach → runs a function for each one.
+
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Prevent default jump-scroll behavior.
+
+        var targetId = this.getAttribute('href');
+        // Gets the href value (e.g. "#menu")
+        var target = document.querySelector(targetId);
+        // Finds the element with that id (e.g. the menu section).
+
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          // Smoothly scrolls to the target element.
+
+          // Close mobile menu if open
+          document.querySelector('.navbar__links').classList.remove('navbar__links--open');
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>
